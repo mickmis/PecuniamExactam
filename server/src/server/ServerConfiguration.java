@@ -3,7 +3,9 @@ package server;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import org.apache.commons.configuration.*;
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.XMLConfiguration;
+
 
 /**
  * Classe servant à charger, conserver et si besoin modifier la serverConfiguration du serveur.
