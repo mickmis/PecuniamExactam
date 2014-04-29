@@ -1,0 +1,27 @@
+root { 
+    display: block;
+}
+
+.toggle {
+    display: inline-block;
+}
+
+.toggle:hover .down{
+    display:block;
+}
+
+.toggle:disabled .down{
+    display: none;
+}
+
+.toggle .down {
+    display: none;
+    
+    /*position: absolute;*/
+    
+    border: solid;
+    width: 200px;
+    height: 200px;
+    
+    background-color:#cccccc;
+}

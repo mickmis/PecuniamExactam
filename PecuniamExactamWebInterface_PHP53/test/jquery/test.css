@@ -1,0 +1,20 @@
+/* 
+    Document   : test
+    Created on : 20 août 2012, 13:28:35
+    Author     : IV
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.firstTest{
+    border: solid;
+    width: 1000px;
+    padding: 10px;
+    
+    display: none;
+}
+

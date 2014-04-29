@@ -1,0 +1,15 @@
+/* 
+    Document   : html2pdf
+    Created on : 3 sept. 2012, 20:13:52
+    Author     : IV
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body{
+    background-color: white;
+}

@@ -1,0 +1,10 @@
+<?xml version='1.0' standalone='yes'?>
+<pecuniamExpectamServerConfiguration>
+  <mysqlServerAddress>localhost</mysqlServerAddress>
+  <mysqlServerPort>3306</mysqlServerPort>
+  <mysqlServerDatabase>pecuniamexactam</mysqlServerDatabase>
+  <mysqlServerUsername>root</mysqlServerUsername>
+  <mysqlServerPassword>root</mysqlServerPassword>
+  <listeningPort>8027</listeningPort>
+  <debugLevel>3</debugLevel>
+</pecuniamExpectamServerConfiguration>

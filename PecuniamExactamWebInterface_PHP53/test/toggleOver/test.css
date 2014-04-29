@@ -1,0 +1,28 @@
+root { 
+    display: block;
+}
+
+.toggle {
+    display: inline-block;
+}
+
+.toggle:hover .over{
+    display:block;
+}
+
+.toggle:disabled .over{
+    display: none;
+}
+
+.toggle .over {
+    display: none;
+    
+    position: absolute;
+    
+    float: left;
+    border: solid;
+    width: 200px;
+    height: 200px;
+    
+    background-color:#cccccc;
+}

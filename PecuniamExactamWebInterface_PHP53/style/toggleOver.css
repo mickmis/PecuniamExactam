@@ -1,0 +1,28 @@
+root { 
+    display: block;
+}
+
+.PecEx_Toggle {
+    display: inline-block;
+}
+
+.PecEx_Toggle:hover .PecEx_Over{
+    display:block;
+}
+
+.PecEx_Toggle:disabled .PecEx_Over{
+    display: none;
+}
+
+.PecEx_Toggle .PecEx_Over {
+    display: none;
+    
+    position: absolute;
+    
+    float: left;
+    border: solid;
+    width: 200px;
+    height: 200px;
+    
+    background-color:#cccccc;
+}

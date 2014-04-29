@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0+" codebase="http://agepoly.epfl.ch/PecuniamExactam/PecuniamExactamClient" href="PecuniamExactamClient.jnlp">
+
+	<information>
+		<title>Client Pecuniam Exactam</title>
+		<vendor>AGEPoly (Mickaël Misbach & Victor Ibekwe)</vendor>
+		<homepage href="http://agepoly.epfl.ch/"/>
+		
+		<description>Système de gestion de caisse centralisée pour évènements.</description>
+		
+		<shortcut online="true" />
+			<desktop />
+			<menu />
+		<shortcut />
+	</information>
+	
+	<application-desc main-class="gui.MainWindow.class">
+		<argument>agepoly.epfl.ch</argument>
+	</application-desc>
+	
+	<resources>
+		<j2se version="1.5+" href="http://java.sun.com/products/autodl/j2se"/>
+		<jar href="http://agepoly.epfl.ch/PecuniamExactam/PecuniamExactamClient/PecuniamExactamClient.jar" download="eager"/>
+	</resources>
+
+	<security>
+		<all-permissions />
+	</security>
+</jnlp>

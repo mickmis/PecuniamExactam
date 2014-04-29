@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+body{
+	width: auto;
+	margin: auto;
+	overflow: inherit;
+}
+
+table {
+	clear: right;
+	width: auto;
+	margin: auto;
+}
+
+select{
+	border: double;
+}
+
+fieldset {
+	border: double;
+}
+
+input{
+	border: 4px double;
+}
+
+input[name="name"]{
+	border: 1px solid;
+}
+
+.loged {
+	float: right;
+}

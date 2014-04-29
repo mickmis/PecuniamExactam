@@ -1,0 +1,119 @@
+@CHARSET "UTF-8";
+
+body{
+	width: 850px;
+	margin: auto;
+	overflow: auto;
+}
+
+table {
+	clear: right;
+	width: auto;
+	margin: auto;
+}
+
+select{
+	border: double;
+}
+
+fieldset {
+	border: double;
+	margin:auto;
+	padding: 10px;
+}
+
+.loged {
+	float: right;
+}
+
+h4 {
+    display: inline-block;
+}
+
+/* LOGIN */
+.login {
+    float: right;
+    clear:left;
+}
+.login *{
+    display: inline;
+    margin: 2px;
+}
+
+/* ZONE DE RECHERCHE */
+.Page_SearchArea *{
+    display: inline;
+}
+
+/* MENU */
+.menu {
+    float: left;
+    margin-top: 0px;
+}
+.menu li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.menu a:visited {
+    color: blue;
+}
+
+/* INTERFACE D'AJOUT */
+.adder_area {
+    position: fixed;
+    width: auto;
+    right: 20%;
+    margin: auto;
+}
+.adder_area .showHide.showAdder {
+    display: block;
+    right:20%;
+    width: auto;
+}
+
+.adder_view {
+    width: 500px;
+    max-height: 800px;
+    overflow: auto;
+    border:solid 1px;
+}
+.add_element_view {
+    padding: 20px;
+    background-color: whitesmoke;
+    border: solid 1px;
+}
+
+/* CONTENU */
+.Page_Content {
+    margin-top: 50px;
+    background-color: whitesmoke;
+    border: 1px solid;
+}
+
+.element_view {
+    border-top: solid 1px;
+    margin: auto;
+    padding: 20px;
+}
+
+.element_view em {
+    text-transform: uppercase;
+    border: inset 1px;
+    padding: 3px;
+}
+
+.content_pane{
+    border: solid;
+    width: 500px;
+    
+    display: none;
+}
+
+.content_pane.simplemodal-data {
+    border: solid;
+    width: 500px;
+    background-color: whitesmoke;
+    padding: 20px;
+    display: none;
+}

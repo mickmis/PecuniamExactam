@@ -1,0 +1,115 @@
+@CHARSET "UTF-8";
+
+body{
+	margin: auto;
+	overflow: auto;
+	background-color: #a1c1cb;
+}
+
+.pecEx_body {
+    background-color: transparent;
+}
+
+.loged {
+	float: right;
+}
+
+/* LOGIN */
+.login {
+    float: right;
+    clear:left;
+}
+.login *{
+    display: inline;
+    margin: 2px;
+}
+
+/* ZONE DE RECHERCHE */
+.Page_SearchArea *{
+    display: inline;
+}
+
+ MENU 
+.menu {
+    float: left;
+}
+.menu li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.menu a:visited {
+    color: blue;
+}
+
+/* INTERFACE D'AJOUT */
+.adder_area{
+    position: fixed;
+    width: auto;
+    right: 20%;
+    margin: auto;
+}
+.adder_area .showHide {
+    right: 20%;
+    display: block;
+    width: auto;
+    background-color: #E5E5E5;
+    border: solid 0.1px;
+    border-radius: 2px;
+    box-shadow: 10px 10px 5px #888;
+}
+
+.adder_view {
+    width: 300px;
+    max-height: 800px;
+    overflow: auto;
+    border: solid 0.1px;
+    border-radius: 2px;
+    box-shadow: 10px 10px 5px #888;
+}
+.add_element_view {
+    padding: 20px;
+    background-color: whitesmoke;
+    border: outset 1px;
+}
+
+/* CONTENU */
+.Page_Content {
+    margin-top: 50px;
+}
+
+.result_view {
+    background-color: whitesmoke;
+    border: solid 5px #ddd;
+    margin-top: -9px;
+    box-shadow: 10px 10px 5px #888;
+    width: auto;
+}
+
+.element_view {
+    margin: auto;
+    padding: 20px;
+    border: solid 1px #ddd;
+    box-shadow: 2px 2px 5px #888;
+}
+
+.element_view em {
+    text-transform: uppercase;
+    border: inset 1px;
+    padding: 3px;
+}
+
+.content_pane{
+    border: solid;
+    width: 500px;
+    
+    display: none;
+}
+
+.content_pane.simplemodal-data {
+    border: solid;
+    width: 500px;
+    background-color: whitesmoke;
+    padding: 20px;
+    display: none;
+}
