@@ -1,5 +1,5 @@
-Pecuniam Exactam
-================
+Pecuniam Exactam Version 1.0
+============================
 
 History
 -------
@@ -18,6 +18,17 @@ GPL v3 : see LICENSE file.
 How to install
 --------------
 TODO
+
+Dependencies
+------------
+The following librairies have to be available in the classpath :
+- Apache Commons Codec (>= 1.6)
+- Apache Commons Configuration (>= 1.8)
+- Apache Commons Daemon (>= 1.0.8)
+- Apache Commons DBUtils (>= 1.4)
+- Apache Commons Lang (>= 2.6)
+- Apache Commons Logging (>= 1.1.1)
+- MySQL Connector Java (>= 5.1.18)
 
 How to use
 ----------
