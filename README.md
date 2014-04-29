@@ -21,7 +21,7 @@ TODO
 
 Dependencies
 ------------
-The following librairies have to be available in the classpath :
+The following librairies have to be available in the Java classpath :
 - Apache Commons Codec (>= 1.6)
 - Apache Commons Configuration (>= 1.8)
 - Apache Commons Daemon (>= 1.0.8)
