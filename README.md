@@ -8,7 +8,7 @@ It was initially developped by Mickaël Misbach - mickael@misba.ch (Java client 
 
 License
 -------
-GPL v2 : see LICENSE file.
+GPL v3 : see LICENSE file.
 
 How to install
 --------------
