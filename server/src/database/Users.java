@@ -1,6 +1,5 @@
 package database;
 
-import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -34,7 +33,7 @@ public class Users extends MysqlTable {
 	public double getCash(String username) {
 		try {
 			List<Object[]> results = this.dbServer.doQuery("SELECT cash FROM users WHERE name=?", username);
-			return ((BigDecimal) results.get(0)[0]).doubleValue();
+			return ((Double) results.get(0)[0]).doubleValue();
 		} catch (SQLException e) {
 			this.dbError(e);
 			return 0;

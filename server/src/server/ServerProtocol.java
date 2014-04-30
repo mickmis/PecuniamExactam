@@ -80,7 +80,7 @@ public class ServerProtocol {
 				if (nextMessage instanceof SharedUser) // premiere condition pour voir si c'est un SharedUser, ou au un autre message
 					if (!this.processAuth((SharedUser) nextMessage)) { // deuxième condition pour l'authentification
 						// authentification échouée, on arrête là
-						this.responses.add(new SharedUser(true, ((SharedUser) nextMessage).getUsername(), 0, false, -1));
+						this.responses.add(new SharedUser(true, ((SharedUser) nextMessage).getUsername(), 0.0, false, -1));
 						break;
 					}
 					else { // authenfication réussie
@@ -108,6 +108,7 @@ public class ServerProtocol {
 				
 		} catch (ClassCastException e) {
 			// si le message envoyé n'est pas un message valide ou qu'une erreur IO survient, on coupe la connexion
+			e.printStackTrace();
 			ServerLogger.warning("Connexion coupée avec le client : " + e.getMessage());
 			return;
 		} catch (ClassNotFoundException e) {

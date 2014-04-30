@@ -1,6 +1,5 @@
 package database;
 
-import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +30,7 @@ public class Products extends MysqlTable {
 	public int getProductListVersion() {
 		try {
 			List<Object[]> results = this.dbServer.doQuery("SELECT price FROM products WHERE tag='product_list_version'");
-			return ((BigDecimal) results.get(0)[0]).intValue();
+			return ((Double) results.get(0)[0]).intValue();
 		} catch (SQLException e) {
 			this.dbError(e);
 			return -1;
@@ -122,7 +121,7 @@ public class Products extends MysqlTable {
 	public double getProductPriceByTag(String productTag) {
 		try {
 			List<Object[]> results = this.dbServer.doQuery("SELECT price FROM products WHERE tag=?", productTag);
-			return ((BigDecimal) results.get(0)[0]).doubleValue();
+			return ((Double) results.get(0)[0]).doubleValue();
 		} catch (SQLException e) {
 			this.dbError(e);
 			return -1;
