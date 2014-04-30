@@ -84,7 +84,7 @@ public class MainFrame extends JFrame {
 		staffButtonPanel.setPreferredSize(new Dimension(100, 70));
 		
 		staffButtonPanel.setBackground(Color.GREEN);
-		optionsPanel.add(staffButtonPanel);
+		//optionsPanel.add(staffButtonPanel); removes staff button
 		GridBagLayout gbl_staffButtonPanel = new GridBagLayout();
 		gbl_staffButtonPanel.columnWidths = new int[]{100, 0};
 		gbl_staffButtonPanel.rowHeights = new int[]{70, 0};
