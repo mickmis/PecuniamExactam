@@ -466,12 +466,12 @@ public class MonneyDialog extends JDialog {
 			}
 		}
 	
-		
+		/* modif : désactivation printing
 		// les transactions ont été faites avec le serveur, on peut imprimer les tickets qui ne sont pas vides
 		for (int i = 0 ; i < standsTicket.length ; i++)
 			if (!standsTicket[i].isEmpty())
 				standsTicket[i].printNow();
-		
+		*/
 		// on réinitialise l'état currentlySellingToStaff
 		Client.client.setCurrentlySellingToStaff(false);
 		Client.mainFrame.getLblStaff().setText("Staff - NON");
