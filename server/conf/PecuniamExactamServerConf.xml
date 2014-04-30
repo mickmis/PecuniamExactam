@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <pecuniamExpectamServerConfiguration>
   <mysqlServerAddress>localhost</mysqlServerAddress>
-  <mysqlServerPort>3306</mysqlServerPort><mysqlServerDatabase>pecuniamexactam</mysqlServerDatabase><mysqlServerUsername>root</mysqlServerUsername>
+  <mysqlServerPort>3306</mysqlServerPort><mysqlServerDatabase>pecex</mysqlServerDatabase><mysqlServerUsername>root</mysqlServerUsername>
   <mysqlServerPassword>root</mysqlServerPassword>
   <listeningPort>8027</listeningPort>
   <listeningAddress>localhost</listeningAddress>
