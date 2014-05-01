@@ -2,25 +2,33 @@ package gui.main;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Frame;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
+
 import java.awt.Dimension;
+import java.io.IOException;
+
 import javax.swing.JLabel;
 
+import printing.Ticket;
 import messages.SharedProduct;
 import messages.SharedStand;
 import client.Client;
-
+//TODO : ajout total fric, ajout texte confirmation?, line break?
 public class MainFrame extends JFrame {
 //TODO mettre parent au joptionpane (un élément du dialog ou autre)
 	/**
@@ -31,12 +39,14 @@ public class MainFrame extends JFrame {
 	public static AuthDialog authDialog;
 	public static CancelTicketDialog cancelTicketDialog;
 	public static CashierDialog cashierDialog;
-	public static MonneyDialog monneyDialog;
+	//public static MonneyDialog monneyDialog;
 	
 	private JPanel contentPane;
 	private JPanel productsPanel;
 	private JPanel ticketInfoPanel;
 	private JLabel lblStaff;
+	private JPanel buttonsPanel;
+	private JLabel confirmationLbl;
 	
 	/**
 	 * Vide la liste des produits.
@@ -52,7 +62,7 @@ public class MainFrame extends JFrame {
 	 * Constructeur qui initalise la fenêtre uniquement.
 	 */
 	public MainFrame() {
-		setUndecorated(true);
+		//setUndecorated(true);
 		setExtendedState(Frame.MAXIMIZED_BOTH);
 		setName("Pecuniam Exactam Application");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,14 +76,11 @@ public class MainFrame extends JFrame {
 		contentPane.add(productsAndOptionsPanel, BorderLayout.CENTER);
 		productsAndOptionsPanel.setLayout(new BorderLayout(0, 0));
 		
-		JScrollPane productsScrollPane = new JScrollPane();
-		productsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		productsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		productsAndOptionsPanel.add(productsScrollPane, BorderLayout.CENTER);
 		
 		this.productsPanel = new JPanel();
-		productsScrollPane.setViewportView(productsPanel);
-		productsPanel.setLayout(new GridLayout(5, 6, 5, 5));
+		productsPanel.setLayout(new GridLayout(3, 4, 5, 5));
+		productsAndOptionsPanel.add(productsPanel, BorderLayout.CENTER);
+
 		
 		JPanel optionsPanel = new JPanel();
 		productsAndOptionsPanel.add(optionsPanel, BorderLayout.SOUTH);
@@ -178,15 +185,36 @@ public class MainFrame extends JFrame {
 		contentPane.add(ticketAndButtonsPanel, BorderLayout.EAST);
 		ticketAndButtonsPanel.setLayout(new BorderLayout(0, 0));
 		
-		JPanel buttonsPanel = new JPanel();
+		buttonsPanel = new JPanel();
 		ticketAndButtonsPanel.add(buttonsPanel, BorderLayout.SOUTH);
 		buttonsPanel.setLayout(new BorderLayout(0, 0));
+		confirmationLbl = new JLabel();
+		buttonsPanel.add(confirmationLbl, BorderLayout.NORTH);
 		
 		JPanel validationButtonPanel = new JPanel();
 		validationButtonPanel.setPreferredSize(new Dimension(200, 70));
-		validationButtonPanel.addMouseListener(new MonneyDialogLauncher());
+		validationButtonPanel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				doTransaction();
+			}
+		});
+		this.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					doTransaction();
+				}
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent arg0) {}
+		});
 		validationButtonPanel.setBackground(Color.GREEN);
-		buttonsPanel.add(validationButtonPanel, BorderLayout.NORTH);
+		buttonsPanel.add(validationButtonPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_validationButtonPanel = new GridBagLayout();
 		gbl_validationButtonPanel.columnWidths = new int[]{200, 0};
 		gbl_validationButtonPanel.rowHeights = new int[]{70, 0};
@@ -194,7 +222,7 @@ public class MainFrame extends JFrame {
 		gbl_validationButtonPanel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		validationButtonPanel.setLayout(gbl_validationButtonPanel);
 		
-		JLabel lblValider = new JLabel("Valider");
+		JLabel lblValider = new JLabel("Valider (ENTER)");
 		GridBagConstraints gbc_lblValider = new GridBagConstraints();
 		gbc_lblValider.fill = GridBagConstraints.VERTICAL;
 		gbc_lblValider.gridx = 0;
@@ -207,7 +235,23 @@ public class MainFrame extends JFrame {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				clearProductList();
+				confirmationLbl.setText("Liste vidée.");
 			}
+		});
+		this.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+					clearProductList();
+					confirmationLbl.setText("Liste vidée.");
+				}
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent arg0) {}
 		});
 		resetButtonPanel.setBackground(Color.YELLOW);
 		buttonsPanel.add(resetButtonPanel, BorderLayout.SOUTH);
@@ -218,7 +262,7 @@ public class MainFrame extends JFrame {
 		gbl_resetButtonPanel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		resetButtonPanel.setLayout(gbl_resetButtonPanel);
 		
-		JLabel lblVider = new JLabel("Vider");
+		JLabel lblVider = new JLabel("Vider (BACKSPACE)");
 		GridBagConstraints gbc_lblVider = new GridBagConstraints();
 		gbc_lblVider.fill = GridBagConstraints.VERTICAL;
 		gbc_lblVider.gridx = 0;
@@ -249,29 +293,66 @@ public class MainFrame extends JFrame {
 		this.productsPanel.removeAll();
 		
 		// array des couleurs pour les différents stands
-		Color[] standColors = new Color[]{Color.YELLOW, Color.GREEN, Color.MAGENTA, Color.ORANGE, Color.RED, Color.BLUE, Color.CYAN, Color.WHITE};
+		Color[] standColors = new Color[]{Color.YELLOW, Color.GREEN, Color.MAGENTA, Color.ORANGE, Color.RED, Color.BLUE, Color.CYAN, Color.WHITE, Color.PINK};
 		
-		for (int i = 0 ; i < Client.client.getCurrentEvent().getStands().length ; i++) // boucle stands
+		// 5 lignes, 6 colonnes
+		int ithItem = 0;
+		final char[] keyboardLetter = new char[]{
+				'q', 'w', 'e', 'r', 
+				'a', 's', 'd', 'f',
+				'y', 'x', 'c', 'v',};
+		
+		for (int i = 0 ; i < Client.client.getCurrentEvent().getStands().length ; i++) { // boucle stands
 			for (int j = 0 ; j < Client.client.getCurrentEvent().getStands()[i].getProducts().length ; j++) { // boucle products
+				
 				final SharedProduct currentProduct = Client.client.getCurrentEvent().getStands()[i].getProducts()[j];
 				SharedStand currentStand = Client.client.getCurrentEvent().getStands()[i];
 				
+				Font bigFont = new Font(getFont().getName(), getFont().getStyle(), getFont().getSize()+15);
 				JPanel productButton = new JPanel();
-				productButton.setBackground(standColors[i % 8]);
+				productButton.setBackground(standColors[ithItem % 9]);
 				this.productsPanel.add(productButton);
 				productButton.setLayout(new BorderLayout(0, 0));
 				
-				JLabel lblProductName = new JLabel(currentProduct.getName());
+				JLabel lblProductName = new JLabel("<html><p>"+currentProduct.getName() + 
+						" ("+currentProduct.getUnit() + ")</p></html>");
+				lblProductName.setFont(bigFont);
 				productButton.add(lblProductName, BorderLayout.NORTH);
 				
-				JLabel lblUnit = new JLabel(currentProduct.getUnit());
-				productButton.add(lblUnit, BorderLayout.EAST);
+				JLabel lblKey = new JLabel(""+keyboardLetter[ithItem]);
+				lblKey.setFont(bigFont);
+				productButton.add(lblKey, BorderLayout.EAST);
 				
 				JLabel lblPrice = new JLabel(Double.toString(currentProduct.getPrice()));
+				lblPrice.setFont(bigFont);
 				productButton.add(lblPrice);
 				
 				JLabel lblStand = new JLabel(currentStand.getName());
 				productButton.add(lblStand, BorderLayout.SOUTH);
+				
+				final int ithItemBis = ithItem;
+				this.addKeyListener(new KeyListener() {
+					@Override
+					public void keyTyped(KeyEvent e) {	
+						if (e.getKeyChar() == keyboardLetter[ithItemBis]) {
+							
+							// on l'ajoute dans la liste interne
+							Client.client.getCurrentSellingProducts().add(currentProduct);
+							
+							// on l'ajoute à l'affichage
+							JLabel lblProductName = new JLabel(currentProduct.getName() + " (" + currentProduct.getUnit() + ") " + currentProduct.getPrice() + " CHF");
+							ticketInfoPanel.add(lblProductName);
+							ticketInfoPanel.revalidate();
+							confirmationLbl.setText("Total="+((double)Client.client.getTotalPrice())/100);
+							System.out.println("Produit " + currentProduct.getName() + " ajouté");
+						}
+					}
+					
+					@Override
+					public void keyReleased(KeyEvent arg0) {}
+					
+					@Override
+					public void keyPressed(KeyEvent arg0) {}});
 				
 				productButton.addMouseListener(new MouseAdapter() {
 					@Override
@@ -283,11 +364,75 @@ public class MainFrame extends JFrame {
 						JLabel lblProductName = new JLabel(currentProduct.getName() + " (" + currentProduct.getUnit() + ") " + currentProduct.getPrice() + " CHF");
 						ticketInfoPanel.add(lblProductName);
 						ticketInfoPanel.revalidate();
+						confirmationLbl.setText("Total="+((double)Client.client.getTotalPrice())/100);
 						System.out.println("Produit " + currentProduct.getName() + " ajouté");
 					}
 				});
+				ithItem++;
 			}
+		}
+		for (int u = ithItem ; u < 12 ; u++) {
+			JPanel blankProductButton = new JPanel();
+			blankProductButton.setBackground(Color.BLACK);
+			blankProductButton.setLayout(new BorderLayout(0, 0));
+			this.productsPanel.add(blankProductButton);
+		}
 		
 		this.productsPanel.validate();
 	}
+	
+	public void doTransaction() {
+		
+		// vérif liste produits pas vide
+		if (Client.client.getCurrentSellingProducts().size() == 0) {
+			JOptionPane.showMessageDialog(Client.mainFrame, "La liste des produits est vide.");
+			return;
+		}
+		
+		// on procède stand par stand
+		SharedStand[] stands = Client.client.getCurrentEvent().getStands();
+		String[] standsDigest = new String[stands.length];
+		Ticket[] standsTicket = new Ticket[stands.length];
+		
+		for (int i = 0 ; i < stands.length ; i++) {
+			standsDigest[i] = Client.client.getClientProtocol().generateRandomDigestHeader();
+			standsTicket[i] = new Ticket(standsDigest[i]);
+								
+			// on itère dans les produits vendus actuellement pour trouver ceux appartenant au stand en question
+			for (SharedProduct prod : Client.client.getCurrentSellingProducts()) {
+				// si le nom du stand actuel == celui du stand auquel appartient le produit actuel
+				if (stands[i].getName().equals(Client.client.getStandNameByProduct(prod)))
+					try {
+						if (Client.client.getClientProtocol().processTransaction(prod, Client.client.isCurrentlySellingToStaff(), standsDigest[i])) 
+							// si la transaction est retournée ok
+							standsTicket[i].addProduct(prod);
+					} catch (IOException ex) {
+						System.out.println("Erreur IO durant envoi des transactions.");
+						ex.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Erreur IO durant l'envoi des transactions. Rien ne va être imprimé, veuillez SVP contrôler la liste des transactions passées et supprimer les dernières.");
+						confirmationLbl.setText("Erreur lors de la dernière transaction.");
+						return;
+					}
+			}
+		}
+	
+		/* modif : désactivation printing
+		// les transactions ont été faites avec le serveur, on peut imprimer les tickets qui ne sont pas vides
+		for (int i = 0 ; i < standsTicket.length ; i++)
+			if (!standsTicket[i].isEmpty())
+				standsTicket[i].printNow();
+		*/
+		// on réinitialise l'état currentlySellingToStaff
+		Client.client.setCurrentlySellingToStaff(false);
+		Client.mainFrame.getLblStaff().setText("Staff - NON");
+		Client.mainFrame.getLblStaff().revalidate();
+		
+		// on vide la liste des produits
+		Client.mainFrame.clearProductList();
+		
+		confirmationLbl.setText("Dernière transaction OK");
+		//MainFrame.monneyDialog.dispose();
+	}
+
 }
+

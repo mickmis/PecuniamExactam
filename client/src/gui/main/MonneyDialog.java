@@ -384,7 +384,7 @@ public class MonneyDialog extends JDialog {
 				cancelButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent e) {
-						MainFrame.monneyDialog.dispose();
+						//MainFrame.monneyDialog.dispose();
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
@@ -480,7 +480,7 @@ public class MonneyDialog extends JDialog {
 		// on vide la liste des produits
 		Client.mainFrame.clearProductList();
 		
-		MainFrame.monneyDialog.dispose();
+		//MainFrame.monneyDialog.dispose();
 	}
 
 }
@@ -500,9 +500,9 @@ class MonneyDialogLauncher extends MouseAdapter {
 		}
 		
 		// création du monneydialog
-		MainFrame.monneyDialog = new MonneyDialog();
+		/*MainFrame.monneyDialog = new MonneyDialog();
 		MainFrame.monneyDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		MainFrame.monneyDialog.setLocationRelativeTo(null);
-		MainFrame.monneyDialog.setVisible(true);
+		MainFrame.monneyDialog.setVisible(true);*/
 	}
 }

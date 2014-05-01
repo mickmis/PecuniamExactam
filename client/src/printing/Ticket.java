@@ -55,11 +55,11 @@ public class Ticket implements Printable {
 		g2d.translate(pf.getImageableX(), pf.getImageableY());
 		
 		// écriture logo agepoly
-		g.drawImage(Client.logoAgepoly, 0, 0, new ImageObserver() { //ne fait rien, on assume que l'image est toujours chargée (car elle l'est dans Client)
+		/*g.drawImage(Client.logoAgepoly, 0, 0, new ImageObserver() { //ne fait rien, on assume que l'image est toujours chargée (car elle l'est dans Client)
 			@Override
 			public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
 				return false;
-			}});
+			}});*/
 		
 		// écriture du nom de l'évènement et celui du stand
 		g.drawString(Client.client.getCurrentEvent().getName() + " - " + Client.client.getStandNameByProduct(this.products.get(0)), 0, 80);

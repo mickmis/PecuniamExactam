@@ -1,14 +1,11 @@
 package client;
 
 import java.awt.EventQueue;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.imageio.ImageIO;
 
 import gui.main.MainFrame;
 import messages.*;
@@ -27,7 +24,6 @@ public class Client {
 	 */
 	public static Client client;
 	public static MainFrame mainFrame;
-	public static BufferedImage logoAgepoly;
 
 
 	/**
@@ -77,23 +73,6 @@ public class Client {
 		// on parse la ligne de commande
 		final InetSocketAddress serverAdress = new InetSocketAddress(args[0], Integer.parseInt(args[1]));
 		System.out.println("Adresse serveur : " + serverAdress.toString());
-		
-		// on charge l'image des logos pour ne pas avoir à la recharger plus tard
-        try {
-        	Client.logoAgepoly = ImageIO.read(Client.class.getResourceAsStream("/res/logo_print_agep.PNG"));
-        } catch (IllegalArgumentException e) { // permet de détecter si on utilise un jar ou non
-        	try {
-				Client.logoAgepoly = ImageIO.read(new File("res" + System.getProperty("file.separator") + "logo_print_agep.PNG"));
-			} catch (IOException e1) {
-				System.out.println("Chargement image échouée");
-	        	e.printStackTrace();
-	        	System.exit(-1);
-			}
-        } catch (IOException e) {
-        	System.out.println("Chargement image échouée");
-        	e.printStackTrace();
-        	System.exit(-1);
-        }
         
 		// on crée le client
 		Client.client = new Client(serverAdress);
