@@ -15,10 +15,6 @@ License
 -------
 GPL v3 : see LICENSE file.
 
-How to install
---------------
-TODO
-
 Dependencies
 ------------
 The following librairies have to be available in the Java classpath :
@@ -29,7 +25,3 @@ The following librairies have to be available in the Java classpath :
 - Apache Commons Lang (>= 2.6)
 - Apache Commons Logging (>= 1.1.1)
 - MySQL Connector Java (>= 5.1.18)
-
-How to use
-----------
-TODO
